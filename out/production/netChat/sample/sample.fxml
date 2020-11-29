@@ -16,17 +16,14 @@
    <top>
       <MenuBar nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Help" visible="false">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#addNotification" text="About" />
+              <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
-   <left>
-      <ListView fx:id="listView" prefHeight="331.0" prefWidth="430.0" BorderPane.alignment="CENTER" />
-   </left>
    <bottom>
       <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -43,7 +40,10 @@
          </children>
       </HBox>
    </bottom>
-   <right>
+   <left>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <ListView fx:id="listView" prefHeight="331.0" prefWidth="409.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

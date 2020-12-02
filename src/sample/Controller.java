@@ -1,17 +1,12 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 public class Controller {
 
@@ -19,38 +14,55 @@ public class Controller {
     private TextField inputField;
 
     @FXML
-    private ListView <String> listView;
+    private TextArea chatArea;
 
-    ObservableList <String> messageList = FXCollections
-            .observableArrayList();
+    private Network network;
 
     @FXML
     public void initialize (){
 
-        // FXML не работает с обычными массивами
-        // Для добавления массива необходимо использовать оболочку ObservableList
-
-        listView.setItems(messageList);
-
     }
 
     @FXML
-    public void addWordToList (){
-        // По умолчанию мы не можем просто так добавить элемент в спписок
-        // До этого необходимо получить список всех элементов
+    public void sendMessage(){
 
-        String word = inputField.getText();
+        String message = inputField.getText();
 
-        if (word.length() != 0){
-            listView.getItems().add(word);
+        if (message.length() != 0){
+            // Записываем сообщение в поток для сервера
+            try {
+                network.getDataOutputStream().writeUTF(message);
+                chatArea.appendText("Вы написали в " + java.time.LocalDateTime.now() + ":");
+                chatArea.appendText("\n");
+                chatArea.appendText(message);
+                chatArea.appendText("\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+
+               String errorMessage = "Сообщение не было Отправлено!";
+                Client.showErrorMessage(e.getMessage(), errorMessage);
+            }
+
         }
 
         inputField.setText("");
 
     }
 
+    public void getMessage (String message){
+        chatArea.appendText("Сервер ответил в " + java.time.LocalDateTime.now() + ":");
+        chatArea.appendText("\n");
+        chatArea.appendText(message);
+        chatArea.appendText("\n");
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
     @FXML
-    public void exit (){
+    public void exit () throws IOException {
+        network.disconnect();
         System.exit(0);
     }
 

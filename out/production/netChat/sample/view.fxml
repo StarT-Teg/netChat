@@ -44,6 +44,6 @@
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <TextArea fx:id="chatArea" prefHeight="357.0" prefWidth="441.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="chatArea" prefHeight="357.0" prefWidth="451.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

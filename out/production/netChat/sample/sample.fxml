@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -27,12 +27,12 @@
    <bottom>
       <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="inputField" onAction="#addWordToList" prefHeight="43.0" prefWidth="831.0">
+            <TextField fx:id="inputField" onAction="#sendMessage" prefHeight="43.0" prefWidth="831.0">
                <padding>
                   <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                </padding>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#addWordToList" prefHeight="116.0" prefWidth="444.0" text="Отправить">
+            <Button mnemonicParsing="false" onAction="#sendMessage" prefHeight="116.0" prefWidth="444.0" text="Отправить">
                <font>
                   <Font size="14.0" />
                </font>
@@ -44,6 +44,6 @@
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <ListView fx:id="listView" prefHeight="331.0" prefWidth="409.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="chatArea" prefHeight="357.0" prefWidth="441.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
